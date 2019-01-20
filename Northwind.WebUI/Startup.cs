@@ -48,7 +48,11 @@ namespace Northwind.WebUI
             services.AddTransient<IDateTime, MachineDateTime>();
 
             // Add MediatR
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
+
+            //BUG: commented out the two lines below, because it caused execution of classes to run twice with v6.0.1 (MediatR.Extensions.Microsoft.DependencyInjection). All fine with prior version!
+            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
+            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPostProcessorBehavior<,>));
+
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddMediatR(typeof(GetProductQueryHandler).GetTypeInfo().Assembly);

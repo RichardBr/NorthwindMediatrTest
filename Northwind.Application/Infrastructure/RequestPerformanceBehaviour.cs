@@ -26,7 +26,7 @@ namespace Northwind.Application.Infrastructure
 
             _timer.Stop();
 
-            if (_timer.ElapsedMilliseconds > 500)
+            if (_timer.ElapsedMilliseconds > 500 || true)
             {
                 var name = typeof(TRequest).Name;
 
